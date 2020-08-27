@@ -5,11 +5,14 @@ import java.util.List;
 import javax.transaction.Transactional;
 import javax.websocket.server.PathParam;
 
+import org.hibernate.criterion.IlikeExpression;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,11 +32,28 @@ public class DummyControllerIntent {
 	@Autowired
 	private UserRepository userRepository;
 	
+	@DeleteMapping("/dummy/user/{id}")
+	public String delete(@PathVariable int id) {
+
+//		User user = userRepository.findById(id).orElseThrow(() -> {
+//			return new IllegalArgumentException("해당유저는 없습니다. id : " + id); // AOP 를 사용해 에러 페이지 이동 시킨다.
+//		});
+		// userRepository.delete(user);
+		
+		try {
+			userRepository.deleteById(id);
+		} catch (Exception e) {
+			return "삭제 실패.";
+		}
+		
+		return "삭제 되었습니다.";
+	}
+	
 	// save 함수는 아이디를 전달하면 insert를 한다.
 	// 이메일과 패스워드를 업데이트 해보자.
-	@Transactional
-	@PutMapping("/dummy/user/modify/{id}")
-	public String modify(@PathVariable int id, @RequestBody User requestUser) { // 아무것도 안하면 x-www-form 으로받는거다.
+	@Transactional // 함수 종료시에 자동을 커밋
+	@PutMapping("/dummy/user/{id}")
+	public String updateUser(@PathVariable int id, @RequestBody User requestUser) { // 아무것도 안하면 x-www-form 으로받는거다.
 		
 		System.out.println("id = " + id);
 		System.out.println("email = " + requestUser.getEmail());
@@ -53,10 +73,7 @@ public class DummyControllerIntent {
 			
 		return "수정되었습니다.";
 	}
-	
-	
-	
-	
+		
 	@GetMapping("/dummy/users")
 	public List<User> list() {
 		return userRepository.findAll();
