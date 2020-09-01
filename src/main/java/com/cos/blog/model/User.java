@@ -9,10 +9,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.UniqueConstraint;
 
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.DynamicInsert;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,8 +28,8 @@ public class User {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id; // 시퀀스 auto_increament
-	
-	@Column(nullable = false, length = 30)
+
+	@Column(nullable = false, length = 30, unique=true)
 	private String username;
 
 	@Column(nullable = false, length = 100)
