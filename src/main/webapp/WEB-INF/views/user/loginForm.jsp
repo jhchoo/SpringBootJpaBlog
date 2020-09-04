@@ -3,7 +3,7 @@
 
 <div class="container">
 
-	<form action="/action_page.php">
+	<form>
 		<div class="form-group">
 			<label for="email">User Name:</label> <input type="email" class="form-control" placeholder="Enter Username" id="username">
 		</div>
@@ -15,8 +15,9 @@
 			</label>
 		</div>
 	</form>
-	<button type="submit" class="btn btn-primary">로그인</button>
+	<button id=button_login class="btn btn-primary">로그인</button>
 
 </div>
 
+<script src="/blog/js/user.js" type="text/javascript"></script>
 <%@ include file="../layout/fotter.jsp"%>

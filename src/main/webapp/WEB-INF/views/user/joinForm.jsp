@@ -3,7 +3,7 @@
 
 <div class="container">
 
-	<form action="/user/joiln">
+	<form>
 		<div class="form-group">
 			<label for="email">User Name:</label> <input type="text" class="form-control" placeholder="Enter Username" id="username">
 		</div>
@@ -18,7 +18,5 @@
 
 </div>
 
-<script src="/blog/js/user.js" type="text/javascript">
-	
-</script>
+<script src="/blog/js/user.js" type="text/javascript"></script>
 <%@ include file="../layout/fotter.jsp"%>

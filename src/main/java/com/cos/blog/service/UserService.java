@@ -28,4 +28,9 @@ public class UserService {
 		//	System.out.println("회원가입 오류 ");
 		//}
 	}
+
+	@Transactional(readOnly = true)    // 셀렉트 할때 여러번 해도 정합성을 유지 시켜 준다.
+	public User login(User user) {
+			return userRepository.login(user.getUsername(), user.getPassword());
+	}
 }

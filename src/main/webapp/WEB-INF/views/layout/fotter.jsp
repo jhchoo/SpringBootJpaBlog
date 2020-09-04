@@ -3,7 +3,7 @@
 <div class="jumbotron text-center" style="margin-bottom: 0">
 	<p>Create by jhchoo</p>
 	<p>📱 010-1234-5678</p>
-	<p>🏢 서울 잠실 석촌호수 근처</p>
+	<p>🏢 판교 붓들공원 근처</p>
 </div>
 
 </body>
