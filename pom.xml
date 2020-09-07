@@ -22,12 +22,10 @@
 	<dependencies>
 	
 		<!-- 추가 라이브러리   -->
-		<!-- 시큐리티 태그 라이브러리 -->
-		<!-- 나중에  -->
-		<!-- <dependency>
+		<dependency>
 		  <groupId>org.springframework.security</groupId>
 		  <artifactId>spring-security-taglibs</artifactId>
-		</dependency> -->
+		</dependency>
 		
 		<!-- JSP 템플릿 엔진 -->
 		<dependency>
@@ -40,6 +38,12 @@
 		  <groupId>javax.servlet</groupId>
 		  <artifactId>jstl</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+  			<artifactId>junit</artifactId>
+		</dependency> 
+
 		<!-- 추가 라이브러리 완료  --> 
 		
 		<dependency>
@@ -47,11 +51,11 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<!-- 시큐리티 라이브러리 -->
-		<!-- 나중에  -->
-<!-- 		<dependency>
+ 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency> -->
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -89,11 +93,13 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- <dependency>
+		
+		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
-		</dependency> -->
+		</dependency>
+		
 	</dependencies>
 
 	<build>
