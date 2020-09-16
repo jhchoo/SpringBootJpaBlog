@@ -23,7 +23,7 @@ public class UserApiController {
 	@PostMapping("/auth/joinProc")
 	public ResponseDto<Integer> save(@RequestBody User user) {
 		System.out.println(" 회원정보 저장");
-		
+				
 		// 실제로 저장하고 리턴 해주면 된다.
 		userService.add(user);
 		

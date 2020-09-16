@@ -1,33 +1,26 @@
 package com.cos.blog.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cos.blog.model.RoleType;
+import com.cos.blog.model.Board;
 import com.cos.blog.model.User;
-import com.cos.blog.repository.UserRepository;
+import com.cos.blog.repository.BoardRepository;
 
 // 스프링 컴포넌트를 통해 메모리에 올린다.
 @Service
-public class UserService {
+public class BoardService {
 	
 	@Autowired
-	private UserRepository userRepository;
+	private BoardRepository boardRepository;
 	
-	@Autowired
-	private BCryptPasswordEncoder encoder;
-
 	@Transactional    //트렌젝션을 하여  DB 유지
-	public void add(User user) {
-
-		String encPassword = encoder.encode(user.getPassword()); // 해쉬 변경 
-		
-		user.setPassword(encPassword);
-		user.setRole(RoleType.USER);
-		
-		userRepository.save(user);
+	public void wirte(Board board, User user) {
+		board.setCount(0);
+		board.setUser(user);
+		System.out.println(board.getContent());
+		boardRepository.save(board);
 	}
 
 }
