@@ -29,6 +29,19 @@ public class BoardService {
 	public Page<Board> list(Pageable pageable) {
 		return boardRepository.findAll(pageable);
 	}
+	
+	@Transactional
+	public Board detail(int id) {
+		return boardRepository.findById(id)
+				.orElseThrow(()-> {
+					return new IllegalArgumentException("글 상세보기 실패");
+				});
+	}
+
+	@Transactional
+	public void deleteById(int id) {
+		boardRepository.deleteById(id);
+	}
 }
 
 
