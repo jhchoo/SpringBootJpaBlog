@@ -3,11 +3,8 @@ package com.cos.blog.test;
 import java.util.List;
 
 import javax.transaction.Transactional;
-import javax.websocket.server.PathParam;
 
-import org.hibernate.criterion.IlikeExpression;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -81,10 +78,10 @@ public class DummyControllerIntent {
 	
 	// 한페이지당 두개의 데이터를 받아보자.
 	@GetMapping("/dummy/user")
-	public List<User> pageList(@PageableDefault(size = 2, sort = "id", direction = Direction.DESC  ) Pageable pageable) {
+	public Page<User> pageList(@PageableDefault(size = 2, sort = "id", direction = Direction.DESC  ) Pageable pageable) {
 		Page<User> pagingUsers = userRepository.findAll(pageable);
 		List<User> users = pagingUsers.getContent();
-		return users;
+		return pagingUsers;
 	}
 	
 	

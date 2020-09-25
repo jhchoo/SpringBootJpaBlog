@@ -3,6 +3,7 @@ package com.cos.blog.model;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -30,7 +31,10 @@ public class Board {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id; 
-		
+	
+	@Column(nullable = false, length = 100)
+	private String  title;
+
 	@Lob // 대용량 데이터 
 	private String content;
 	
