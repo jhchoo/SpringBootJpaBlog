@@ -42,6 +42,19 @@ public class BoardService {
 	public void deleteById(int id) {
 		boardRepository.deleteById(id);
 	}
+
+	@Transactional 
+	public void update(int id, Board requestBoard) {
+		Board board  = boardRepository.findById(id)
+				.orElseThrow(()-> {
+					return new IllegalArgumentException("글 상세보기 실패");
+				}); // 영속화 완 
+
+		board.setTitle(requestBoard.getTitle());
+		board.setContent(requestBoard.getContent());
+		// 해당 함수의 종료시에 트랜젝션이 Service가 종료 될 때, 트렌젝션이 종료 됩니다., 이때 더티체킹  - 자동 업데이트 된다. flush 됨 
+	}
+	
 }
 
 

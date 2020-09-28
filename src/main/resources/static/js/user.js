@@ -7,6 +7,11 @@ let index = {
 		$("#button_save").on("click", ()=>{ // function(){} , ()=>{} 사용한 이유는 this를 바인딩 하기 위해서 이다. 
 			this.save();
 		});
+		
+		$("#button_update").on("click", ()=>{ 
+			this.update();
+		});
+		
 	},
 	
 	save: function() {
@@ -35,10 +40,35 @@ let index = {
 			// console.log(resp)
 			location.href = "/";
 		}).fail(function() {
+		}); 
+	},
+	
+	update: function() {
+		let data = {
+			id: $("#id").val(),
+			username: $("#username").val(),
+			password: $("#pwd").val(),
+			email: $("#email").val()
+		}
+		
+		$.ajax({
+			type: "PUT",
+			url:"/user",
+			data:JSON.stringify(data), // http body  데이터 
+			contentType: "application/json; charset:utf-8",
+			dataType:"json" // 요청을 서버로 해서 응답이 왔을 때, 응답이 json형태이면 javascript 파라미터로 변
+		}).done(function(resp) {
+			
+			alert("회원수정이 완료되었습니다.")
+			// alert(resp)
+			// console.log(resp)
+			location.href = "/";
+		}).fail(function() {
 			
 			
 		}); 
 	}
+	
 }
 
 index.init()

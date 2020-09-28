@@ -11,6 +11,10 @@ let index = {
 		$("#button_delete").on("click", ()=>{ // 삭제 
 			this.deleteById();
 		});
+		
+		$("#button_update").on("click", ()=>{ // 수정
+			this.update();
+		});
 	},
 	
 	save: function() {
@@ -38,8 +42,6 @@ let index = {
 			// console.log(resp)
 			location.href = "/";
 		}).fail(function() {
-			
-			
 		}); 
 	},
 	
@@ -56,10 +58,36 @@ let index = {
 			alert("삭제가 완료 되었습니다.")
 			location.href = "/";
 		}).fail(function() {
-			
-			
 		}); 
-	}
+	},
+	
+	update: function() {
+		let id = $("#id").val();
+		let data = {
+			title: $("#title").val(),
+			content: $("#content").val()
+		}
+		
+		// console.log(data)
+		
+		// 비동기 호
+		// ajax 통신을 이용해서 3개의 데이터를 insert 요청 
+		$.ajax({
+			// 통신 수행 
+			type: "PUT",
+			url:"/api/board/"+id,
+			data:JSON.stringify(data), // http body  데이터 
+			contentType: "application/json; charset:utf-8",
+			dataType:"json" // 요청을 서버로 해서 응답이 왔을 때, 응답이 json형태이면 javascript 파라미터로 변
+		}).done(function(resp) {
+			
+			alert("수정이  완료 되었습니다.")
+			// alert(resp)
+			// console.log(resp)
+			location.href = "/";
+		}).fail(function() {
+		}); 
+	},
 }
 
 index.init()
