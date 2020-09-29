@@ -20,6 +20,16 @@ public class UserService {
 	private BCryptPasswordEncoder encoder;
 
 	@Transactional // 트렌젝션을 하여 DB 유지
+	public User find(String username) {
+
+		User persistance = userRepository.findByUsername(username).orElseGet(() -> {
+			return new User();
+		});
+		
+		return persistance;
+	}
+	
+	@Transactional // 트렌젝션을 하여 DB 유지
 	public void add(User user) {
 
 		String encPassword = encoder.encode(user.getPassword()); // 해쉬 변경
@@ -39,10 +49,13 @@ public class UserService {
 			return new IllegalArgumentException("회원찾기 실패 ");
 		});
 
-		String rawPassword = user.getPassword();
-		String encPassword = encoder.encode(rawPassword);
-		persistance.setPassword(encPassword);
-		persistance.setEmail(user.getEmail());
+		// sns 로그인 사용자 
+		if (persistance.getOauth() == null || persistance.getOauth().equals("")) {
+			String rawPassword = user.getPassword();
+			String encPassword = encoder.encode(rawPassword);
+			persistance.setPassword(encPassword);
+			persistance.setEmail(user.getEmail());
+		}
 
 		// 함수종료시 자동 커밋
 	}

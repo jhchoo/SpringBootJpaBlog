@@ -9,7 +9,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -29,7 +28,7 @@ public class User {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id; // 시퀀스 auto_increament
 
-	@Column(nullable = false, length = 30, unique=true)
+	@Column(nullable = false, length = 100, unique=true)
 	private String username;
 
 	@Column(nullable = false, length = 100)
@@ -41,6 +40,9 @@ public class User {
 	// @ColumnDefault("'user'") // 문자라는것을 알려주기위해 작은 따옴표가 안에 있다.
 	@Enumerated(EnumType.STRING)
 	private RoleType role; // enum 을 쓰는게 좋다.도메인을 정할 수 있다. 오타방지 가능.
+
+	@Column(length = 50)
+	private String oauth; // kakao, google
 	
 	@CreationTimestamp
 	private Timestamp createDate;
