@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cos.blog.auth.PrincipalDetail;
 import com.cos.blog.dto.ResponseDto;
 import com.cos.blog.model.Board;
+import com.cos.blog.model.Reply;
 import com.cos.blog.service.BoardService;
 
 @RestController
@@ -41,4 +42,19 @@ public class BoardApiController {
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
 	
+	@PostMapping("/api/board/{boardid}/reply")
+	public ResponseDto<Integer> replySave(@PathVariable int boardid, @RequestBody Reply reply, @AuthenticationPrincipal PrincipalDetail principal) {
+		boardService.replyWirte(boardid, reply, principal.getUser());
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+	}
+	
+	@DeleteMapping("/api/board/{boardid}/reply/{replyid}")
+	public ResponseDto<Integer> replyDelete(@PathVariable int boardid, @PathVariable int replyid) {
+		System.out.println("boardid" + boardid);
+		System.out.println("replyid" + replyid);
+		
+		boardService.replyDelete(replyid);
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+	}
+
 }

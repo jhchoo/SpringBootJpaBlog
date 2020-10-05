@@ -34,11 +34,15 @@ let index = {
 			contentType: "application/json; charset:utf-8",
 			dataType:"json" // 요청을 서버로 해서 응답이 왔을 때, 응답이 json형태이면 javascript 파라미터로 변
 		}).done(function(resp) {
-			
-			alert("회원가입이 완료 되었습니다.")
 			// alert(resp)
 			// console.log(resp)
-			location.href = "/";
+			
+			if (resp.status == 500) {
+				alert("회원가입에 실패 하였습니다.")
+			} else {
+				alert("회원가입이 완료 되었습니다.")
+				location.href = "/";
+			}
 		}).fail(function() {
 		}); 
 	},

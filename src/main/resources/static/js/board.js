@@ -15,6 +15,11 @@ let index = {
 		$("#button_update").on("click", ()=>{ // 수정
 			this.update();
 		});
+		
+		$("#btn_reply_save").on("click", ()=>{ // 댓글등록 
+			this.replySave();
+		});
+		
 	},
 	
 	save: function() {
@@ -87,6 +92,55 @@ let index = {
 			location.href = "/";
 		}).fail(function() {
 		}); 
+	},
+	
+	
+	replySave: function() {
+		// alert('user 의 save  함수가 호출됨 ')
+		let data = {
+			content: $("#reply_content").val()
+		};
+		
+		let boardid = $("#boardid").val();
+		//alert(data.content);
+  //		alert(boardid);
+		
+		// 비동기 호
+		// ajax 통신을 이용해서 3개의 데이터를 insert 요청 
+		$.ajax({
+			// 통신 수행 
+			type: "POST",
+			url:'/api/board/'+boardid+'/reply',
+			data:JSON.stringify(data), // http body  데이터 
+			contentType: "application/json; charset:utf-8",
+			dataType:"json" // 요청을 서버로 해서 응답이 왔을 때, 응답이 json형태이면 javascript 파라미터로 변
+		}).done(function(resp) {
+			
+			alert("댓글작성이 완료 되었습니다.")
+			// alert(resp)
+			// console.log(resp)
+			location.href = "/board/"+boardid;
+		}).fail(function() {
+
+		});
+	},
+	
+	replyDelete: function(boardid, replyid) {
+		
+		//	alert(boardid +"  sdf "+ replyid);
+			
+		$.ajax({
+			// 통신 수행 
+			type: "DELETE",
+			url:'/api/board/'+boardid+'/reply/'+replyid,
+			contentType: "application/json; charset:utf-8",
+			dataType:"json" // 요청을 서버로 해서 응답이 왔을 때, 응답이 json형태이면 javascript 파라미터로 변
+		}).done(function(resp) {
+			alert("댓글삭제 성공 ")
+			location.href = '/board/'+boardid;
+		}).fail(function() {
+
+		});
 	},
 }
 
