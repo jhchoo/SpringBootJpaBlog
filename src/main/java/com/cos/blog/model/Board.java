@@ -44,7 +44,7 @@ public class Board {
 	
 	@ColumnDefault("0")
 	private int count;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER) // Many=Many, User = One
 	@JoinColumn(name="userId")
 	private User user;

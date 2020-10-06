@@ -1,0 +1,48 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x000000010d8fbabe, pid=17162, tid=22275
+#
+# JRE version: OpenJDK Runtime Environment AdoptOpenJDK (14.0.2+12) (build 14.0.2+12)
+# Java VM: OpenJDK 64-Bit Server VM AdoptOpenJDK (14.0.2+12, mixed mode, sharing, tiered, compressed oops, g1 gc, bsd-amd64)
+# Problematic frame:
+# C  [libjimage.dylib+0x1abe]  ImageStrings::find(Endian*, char const*, int*, unsigned int)+0x52
+#
+# No core dump will be written. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   https://github.com/AdoptOpenJDK/openjdk-support/issues
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:50225 -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=50216 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=localhost -Dspring.jmx.enabled=true -Dspring.application.admin.enabled=true -Djava.security.egd=file:/dev/./urandom -Xverify:none -XX:TieredStopAtLevel=1 -Dspring.boot.project.name=blog -javaagent:/Users/jhchoo/eclipse/jee-2020-06/Eclipse.app/Contents/Eclipse/configuration/org.eclipse.osgi/404/0/.cp/lib/javaagent-shaded.jar -Dfile.encoding=UTF-8 com.cos.blog.BlogApplication
+
+Host: MacBookPro12,1 x86_64 2700 MHz, 4 cores, 8G, Darwin 19.6.0
+Time: Mon Oct  5 14:21:32 2020 KST elapsed time: 24 seconds (0d 0h 0m 24s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007fcb3285e000):  JavaThread "Signal Dispatcher" daemon [_thread_in_vm, id=22275, stack(0x00007000042da000,0x00007000043da000)]
+
+Stack: [0x00007000042da000,0x00007000043da000],  sp=0x00007000043d8320,  free space=1016k
+Native frames: (J=compiled Java code, A=aot compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [libjimage.dylib+0x1abe]  ImageStrings::find(Endian*, char const*, int*, unsigned int)+0x52
+C  [libjimage.dylib+0x2718]  ImageFileReader::find_location_index(char const*, unsigned long long*) const+0x3e
+C  [libjimage.dylib+0x2958]  JIMAGE_FindResource+0xcf
+V  [libjvm.dylib+0x1d1be7]  ClassPathImageEntry::open_stream_for_loader(char const*, ClassLoaderData*, Thread*)+0x49
+V  [libjvm.dylib+0x1d3cd3]  ClassLoader::load_class(Symbol*, bool, Thread*)+0x147
+V  [libjvm.dylib+0x71aa11]  SystemDictionary::load_instance_class(Symbol*, Handle, Thread*)+0x303
+V  [libjvm.dylib+0x7199f9]  SystemDictionary::resolve_instance_class_or_null(Symbol*, Handle, Handle, Thread*)+0x521
+V  [libjvm.dylib+0x719127]  SystemDictionary::resolve_or_fail(Symbol*, Handle, Handle, bool, Thread*)+0x1b
+V  [libjvm.dylib+0x210026]  ConstantPool::klass_at_impl(constantPoolHandle const&, int, bool, Thread*)+0x166
+V  [libjvm.dylib+0x210761]  ConstantPool::klass_at(int, Thread*)+0x4d
+V  [libjvm.dylib+0x34cad1]  InterpreterRuntime::_new(JavaThread*, ConstantPool*, int)+0x29
+j  jdk.internal.misc.Signal.dispatch(I)V+25 java.base@14.0.2
+v  ~StubRoutines::call_stub
+V  [libjvm.dylib+0x353b2f]  JavaCalls::call_helper(JavaValue*, methodHandle const&, JavaCallArguments*, Thread*)+0x255
+V  [libjvm.dylib+0x35348b]  JavaCalls::call_static(JavaValue*, Klass*, Symbol*, Symbol*, JavaCallArguments*, Thread*)+0xbb
+V  [libjvm.dylib+0x5f3765]  signal_thread_entry(JavaThread*, Thread*)+0x30a
+V  [libjvm.dylib+0x750f2e]  JavaThread::thread_main_inner()+0x86
+V  [libjvm.dylib+0x750d6c]  JavaThread::run()+0x118
+V  [libjvm.dylib+0x74ebb5]  Thread::call_run()+0x71
