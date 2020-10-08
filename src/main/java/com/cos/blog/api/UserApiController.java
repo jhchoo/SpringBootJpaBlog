@@ -23,6 +23,8 @@ import com.cos.blog.dto.ResponseDto;
 import com.cos.blog.model.User;
 import com.cos.blog.service.UserService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 public class UserApiController {
 	
@@ -31,8 +33,9 @@ public class UserApiController {
 	
 	@Autowired
 	private PrincipalDetailService principalDetailService;
-	
-	@PostMapping("/auth/joinProc")
+
+	@ApiOperation("회원가입")
+	@PostMapping("/api/joinProc")
 	public ResponseDto<Integer> save(@RequestBody User user) {
 		System.out.println(" 회원정보 저장");
 				
@@ -42,7 +45,8 @@ public class UserApiController {
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
 
-	@PutMapping("/user")
+	@ApiOperation("수정")
+	@PutMapping("/api/user")
 	public ResponseDto<Integer> update(@RequestBody User user
 			, @AuthenticationPrincipal PrincipalDetail principal
 			, HttpSession session) { // json 데이터를 받으려면 @RequestBody  이걸 해야 한다.

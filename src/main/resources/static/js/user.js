@@ -29,7 +29,7 @@ let index = {
 		$.ajax({
 			// 통신 수행 
 			type: "POST",
-			url:"/auth/joinProc",
+			url:"/api/joinProc",
 			data:JSON.stringify(data), // http body  데이터 
 			contentType: "application/json; charset:utf-8",
 			dataType:"json" // 요청을 서버로 해서 응답이 왔을 때, 응답이 json형태이면 javascript 파라미터로 변
@@ -57,7 +57,7 @@ let index = {
 		
 		$.ajax({
 			type: "PUT",
-			url:"/user",
+			url:"/api/user",
 			data:JSON.stringify(data), // http body  데이터 
 			contentType: "application/json; charset:utf-8",
 			dataType:"json" // 요청을 서버로 해서 응답이 왔을 때, 응답이 json형태이면 javascript 파라미터로 변

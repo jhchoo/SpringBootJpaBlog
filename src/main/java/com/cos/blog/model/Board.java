@@ -21,6 +21,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,6 +34,7 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Board {
 
+	@ApiModelProperty(notes = "유일키", position=1 )
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id; 
 	
